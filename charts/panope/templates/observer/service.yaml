@@ -1,0 +1,25 @@
+{{- if .Values.observer.serviceMonitor.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "panope.observer.fullname" . }}
+  labels:
+    {{- include "panope.observer.labels" . | nindent 4 }}
+  {{- with .Values.observer.service.labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.observer.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  ports:
+  - name: metrics
+    port: {{ .Values.observer.configMap.metricsPort | int }}
+    protocol: TCP
+    targetPort: {{ .Values.observer.configMap.metricsPort | int }}
+  selector:
+    {{- include "panope.observer.selectorLabels" . | nindent 4 }}
+  sessionAffinity: None
+  type: ClusterIP
+{{- end -}}
