@@ -1,9 +1,0 @@
----
-debug: true
-remote: origin
-target-branch: main
-validate-chart-schema: true
-# disable the maintainers validation
-# https://github.com/helm/chart-testing/issues/192
-validate-maintainers: false
-validate-yaml: true
