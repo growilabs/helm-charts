@@ -12,7 +12,7 @@ agent:
     repository: gcr.io/panope/agent
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v0.1.1
+    tag:
 
   imagePullSecrets: []
   nameOverride: ""
@@ -168,7 +168,7 @@ observer:
     repository: gcr.io/panope/observer
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v0.1.1
+    tag:
 
   podAnnotations: {}
 
