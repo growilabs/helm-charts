@@ -3,6 +3,16 @@ entries:
   panope:
   - apiVersion: v2
     appVersion: v0.1.1
+    created: "2022-02-03T17:58:36.383071023Z"
+    description: A Helm chart for Kubernetes
+    digest: 81781ddca3981e54770326b7c96e07e2bedd2a96422cd4b7dc16a3e0c5757bf3
+    name: panope
+    type: application
+    urls:
+    - https://github.com/7knot/helm-charts/releases/download/panope-0.1.3/panope-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: v0.1.1
     created: "2022-01-28T17:16:23.08443862Z"
     description: A Helm chart for Kubernetes
     digest: f0053202b4027fb319a52cb11d386e25cff63491390acb62fd6d52871c18287b
@@ -31,4 +41,4 @@ entries:
     urls:
     - https://github.com/7knot/helm-charts/releases/download/panope-0.1.0/panope-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-28T17:16:23.084460334Z"
+generated: "2022-02-03T17:58:36.383084623Z"
