@@ -12,7 +12,8 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 data:
-  SUBJECT: {{ required "Invalid value. Values.agent.configMap.subject is required!" .Values.agent.configMap.subject | quote }}
+  AGENT_SUBJECT: {{ required "Invalid value. Values.agent.configMap.agentSubject is required!" .Values.agent.configMap.agentSubject | quote }}
+  CONTROLLER_SUBJECT: {{ required "Invalid value. Values.agent.configMap.controllerSubject is required!" .Values.agent.configMap.controllerSubject | quote }}
   NATS_URI: {{ required "Invalid value. Values.agent.configMap.natsUri is required!" .Values.agent.configMap.natsUri | quote }}
   HEALTH_CHECK_PORT: {{ .Values.agent.configMap.healthCheckPort | quote }}
   METRICS_PORT: {{ .Values.agent.configMap.metricsPort | quote }}

@@ -114,8 +114,9 @@ agent:
     # annotations to add to the config map
     annotations: {}
 
-    subject: ""
-    natsUri: wss://nats.7knot.TBD
+    natsUri: "wss://nats.panope.net:443"
+    agentSubject:
+    controllerSubject:
     healthCheckPort: "4444"
     metricsPort: "2112"
 
