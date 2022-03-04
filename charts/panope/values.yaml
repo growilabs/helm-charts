@@ -63,6 +63,8 @@ agent:
     # runAsNonRoot: true
     # runAsUser: 1000
 
+  priorityClassName: ""
+
   resources:
     {}
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -119,12 +121,28 @@ agent:
     controllerSubject:
     healthCheckPort: "4444"
     metricsPort: "2112"
+    # configure the maximum number of nodes in the cluster as a percentage
+    clusterNodeMaxSurge: "25%"
+    # configure the maximum number of nodes to be processed at the same time (cordoned or drained, etc.)
+    maxProcessedNodeCount: "5"
 
   serviceAccount:
     name: ""
     # labels to add to the service account
     labels: {}
     # Annotations to add to the service account
+    annotations: {}
+
+  role:
+    # labels to add to the role
+    labels: {}
+    # Annotations to add to the role
+    annotations: {}
+
+  roleBinding:
+    # labels to add to the role binding
+    labels: {}
+    # Annotations to add to the role binding
     annotations: {}
 
   clusterRole:
@@ -235,6 +253,8 @@ observer:
     # Annotations to add to the cluster role binding
     annotations: {}
 
+  priorityClassName: ""
+
   resources:
     {}
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -247,6 +267,8 @@ observer:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
+
+  tolerations: []
 
   serviceMonitor:
     # labels to add to the servicemonitor

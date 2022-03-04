@@ -41,6 +41,9 @@ spec:
       serviceAccountName: {{ include "panope.observer.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.observer.podSecurityContext | nindent 8 }}
+      {{- if .Values.observer.priorityClassName }}
+      priorityClassName: {{ .Values.observer.priorityClassName }}
+      {{- end }}
       containers:
       - image: "{{ .Values.observer.image.repository }}:{{ .Values.observer.image.tag | default .Chart.AppVersion }}"
         command:
@@ -68,3 +71,7 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ include "panope.observer.fullname" . }}-env
+      {{- with .Values.observer.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
