@@ -45,6 +45,9 @@ spec:
       serviceAccountName: {{ include "panope.agent.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.agent.podSecurityContext | nindent 8 }}
+      {{- if .Values.agent.priorityClassName }}
+      priorityClassName: {{ .Values.agent.priorityClassName }}
+      {{- end }}
       containers:
       - name: {{ .Release.Name }}
         command:
