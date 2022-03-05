@@ -29,6 +29,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
+      terminationGracePeriodSeconds: 600 # for graceful shutdown
       volumes:
       - secret:
           secretName: {{ include "panope.agent.fullname" . }}
