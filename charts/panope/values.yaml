@@ -117,8 +117,8 @@ agent:
     annotations: {}
 
     natsUri: "wss://nats.panope.net:443"
-    agentSubject:
-    controllerSubject:
+    agentSubject: ""
+    controllerSubject: ""
     healthCheckPort: "4444"
     metricsPort: "2112"
     # configure the maximum number of nodes in the cluster as a percentage
@@ -203,12 +203,37 @@ observer:
     # Annotations to add to the deployment
     annotations: {}
 
+  secret:
+    # labels to add to the secret
+    labels: {}
+    # annotations to add to the secret
+    annotations: {}
+
+    nats:
+      credentials:
+      # credentials: |
+      #   -----BEGIN NATS USER JWT-----
+      #   ------END NATS USER JWT------
+
+      #   ************************* IMPORTANT *************************
+      #   NKEY Seed printed below can be used to sign and prove identity.
+      #   NKEYs are sensitive and should be treated as secrets.
+
+      #   -----BEGIN USER NKEY SEED-----
+      #   ------END USER NKEY SEED------
+
+      #   *************************************************************
+
+
   configMap:
     # labels to add to the config map
     labels: {}
     # annotations to add to the config map
     annotations: {}
 
+    observerSubject: ""
+    controllerSubject: ""
+    natsUri: "wss://nats.panope.net:443"
     healthCheckPort: "4444"
     metricsPort: "2112"
 

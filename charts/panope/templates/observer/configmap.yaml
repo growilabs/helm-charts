@@ -14,3 +14,7 @@ metadata:
 data:
   HEALTH_CHECK_PORT: {{ .Values.observer.configMap.healthCheckPort | quote }}
   METRICS_PORT: {{ .Values.observer.configMap.metricsPort | quote }}
+  OBSERVER_SUBJECT: {{ required "Invalid value. Values.observer.configMap.observerSubject is required!" .Values.observer.configMap.observerSubject | quote }}
+  CONTROLLER_SUBJECT: {{ required "Invalid value. Values.observer.configMap.controllerSubject is required!" .Values.observer.configMap.controllerSubject | quote }}
+  NATS_URI: {{ required "Invalid value. Values.observer.configMap.natsUri is required!" .Values.observer.configMap.natsUri | quote }}
+
