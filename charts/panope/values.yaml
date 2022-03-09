@@ -117,8 +117,8 @@ agent:
     annotations: {}
 
     natsUri: "wss://nats.panope.net:443"
-    agentSubject:
-    controllerSubject:
+    agentSubject: ""
+    controllerSubject: ""
     healthCheckPort: "4444"
     metricsPort: "2112"
     # configure the maximum number of nodes in the cluster as a percentage
