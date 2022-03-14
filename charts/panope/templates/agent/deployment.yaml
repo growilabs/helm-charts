@@ -50,7 +50,7 @@ spec:
       priorityClassName: {{ .Values.agent.priorityClassName }}
       {{- end }}
       containers:
-      - name: {{ .Release.Name }}
+      - name: agent
         command:
         - bin/agent
         securityContext:
