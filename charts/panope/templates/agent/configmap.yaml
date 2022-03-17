@@ -19,3 +19,5 @@ data:
   MAX_PROCESSED_NODE_COUNT: {{ .Values.agent.configMap.maxProcessedNodeCount | quote }}
   HEALTH_CHECK_PORT: {{ .Values.agent.configMap.healthCheckPort | quote }}
   METRICS_PORT: {{ .Values.agent.configMap.metricsPort | quote }}
+  ROLLING_UPDATE_TIMEOUT_SEC: {{ .Values.agent.configMap.rollingUpdateTimeoutSec | quote }}
+  DRAINING_TIMEOUT_SEC: {{ .Values.agent.configMap.drainingTimeoutSec | quote }}

@@ -91,6 +91,7 @@ agent:
     annotations: {}
 
     nats:
+      # configure the NATS credentials for agent to publish/subscribe
       credentials:
       # credentials: |
       #   -----BEGIN NATS USER JWT-----
@@ -116,15 +117,37 @@ agent:
     # annotations to add to the config map
     annotations: {}
 
+    # configure the NATS URI
+    # currently, the only supported URI schema is `wss`
     natsUri: "wss://nats.panope.net:443"
+
+    # configure NATS subject for agent to publish
     agentSubject: ""
+
+    # configure NATS subject for agent to subscribe
     controllerSubject: ""
-    healthCheckPort: "4444"
-    metricsPort: "2112"
+
+    # configure the health check port
+    # if not set, default value is 4444
+    healthCheckPort:
+
+    # configure the metrics port
+    # if not set, default value is 2112
+    metricsPort:
+
     # configure the maximum number of nodes in the cluster as a percentage
     clusterNodeMaxSurge: "25%"
+
     # configure the maximum number of nodes to be processed at the same time (cordoned or drained, etc.)
     maxProcessedNodeCount: "5"
+
+    # configure the timeout for rolling update of deployment
+    # if not set, default value is 180
+    rollingUpdateTimeoutSec:
+
+    # configure the timeout for draining pods
+    # if not set, default value is 180
+    drainingTimeoutSec:
 
   serviceAccount:
     name: ""
@@ -210,6 +233,7 @@ observer:
     annotations: {}
 
     nats:
+      # configure the NATS credentials for agent to publish/subscribe
       credentials:
       # credentials: |
       #   -----BEGIN NATS USER JWT-----
@@ -231,11 +255,23 @@ observer:
     # annotations to add to the config map
     annotations: {}
 
+    # configure NATS subject for observer to publish
     observerSubject: ""
+
+    # configure NATS subject for observer to subscribe
     controllerSubject: ""
+
+    # configure the NATS URI
+    # currently, the only supported URI schema is `wss`
     natsUri: "wss://nats.panope.net:443"
-    healthCheckPort: "4444"
-    metricsPort: "2112"
+
+    # configure the health check port
+    # if not set, default value is 4444
+    healthCheckPort:
+
+    # configure the metrics port
+    # if not set, default value is 2112
+    metricsPort:
 
   livenessProbe:
     failureThreshold: 5
