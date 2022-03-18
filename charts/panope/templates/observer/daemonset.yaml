@@ -70,10 +70,10 @@ spec:
               fieldPath: spec.nodeName
         ports:
           - name: http
-            containerPort: {{ required "Invalid value. Values.observer.configMap.healthCheckPort is required!" .Values.observer.configMap.healthCheckPort }}
+            containerPort: {{ .Values.observer.configMap.healthCheckPort | default 4444 }}
             protocol: TCP
           - name: metrics
-            containerPort: {{ required "Invalid value. Values.observer.configMap.metricsPort is required!" .Values.agent.configMap.metricsPort }}
+            containerPort: {{ .Values.observer.configMap.metricsPort | default 2112 }}
             protocol: TCP
         envFrom:
         - configMapRef:
