@@ -15,9 +15,9 @@ metadata:
 spec:
   ports:
   - name: metrics
-    port: {{ .Values.agent.configMap.metricsPort | int }}
+    port: {{ .Values.agent.configMap.metricsPort | default 2112 }}
     protocol: TCP
-    targetPort: {{ .Values.agent.configMap.metricsPort | int }}
+    targetPort: {{ .Values.agent.configMap.metricsPort | default 2112 }}
   selector:
     {{- include "panope.agent.selectorLabels" . | nindent 4 }}
   sessionAffinity: None
