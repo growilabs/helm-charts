@@ -15,9 +15,9 @@ metadata:
 spec:
   ports:
   - name: metrics
-    port: {{ .Values.observer.configMap.metricsPort | int }}
+    port: {{ .Values.observer.configMap.metricsPort | default 2112 }}
     protocol: TCP
-    targetPort: {{ .Values.observer.configMap.metricsPort | int }}
+    targetPort: {{ .Values.observer.configMap.metricsPort | default 2112 }}
   selector:
     {{- include "panope.observer.selectorLabels" . | nindent 4 }}
   sessionAffinity: None
