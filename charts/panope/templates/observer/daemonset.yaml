@@ -41,6 +41,9 @@ spec:
             - matchExpressions:
               - key: cloud.google.com/gke-preemptible
                 operator: Exists
+            - matchExpressions:
+              - key: cloud.google.com/gke-spot
+                operator: Exists
       {{- with .Values.observer.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
