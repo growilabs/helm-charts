@@ -34,16 +34,10 @@ spec:
       # necessary to hit the node's metadata server when using Workload Identity
       hostNetwork: true
       terminationGracePeriodSeconds: 30 # for graceful shutdown
+      {{- with .Values.observer.affinity }}
       affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: cloud.google.com/gke-preemptible
-                operator: Exists
-            - matchExpressions:
-              - key: cloud.google.com/gke-spot
-                operator: Exists
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.observer.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
