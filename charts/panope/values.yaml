@@ -220,10 +220,22 @@ observer:
 
   imagePullSecrets: []
 
+  affinity:
+    # following affinity is required for the observer to work properly
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: cloud.google.com/gke-preemptible
+            operator: Exists
+        - matchExpressions:
+          - key: cloud.google.com/gke-spot
+            operator: Exists
+
   daemonset:
     # labels to add to the deployment
     labels: {}
-    # Annotations to add to the deployment
+    # annotations to add to the deployment
     annotations: {}
 
   secret:
