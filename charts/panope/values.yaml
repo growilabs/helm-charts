@@ -231,6 +231,9 @@ observer:
         - matchExpressions:
           - key: cloud.google.com/gke-spot
             operator: Exists
+        - matchExpressions:
+          - key: panope.net/failover
+            operator: Exists
 
   daemonset:
     # labels to add to the deployment
