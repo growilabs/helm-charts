@@ -149,6 +149,9 @@ agent:
     # if not set, default value is 180
     drainingTimeoutSec:
 
+    # configure the failover feature
+    failoverEnabled: "false"
+
   serviceAccount:
     name: ""
     # labels to add to the service account
