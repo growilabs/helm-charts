@@ -21,3 +21,4 @@ data:
   METRICS_PORT: {{ .Values.agent.configMap.metricsPort | default "2112" | quote }}
   ROLLING_UPDATE_TIMEOUT_SEC: {{ .Values.agent.configMap.rollingUpdateTimeoutSec | default "180" | quote }}
   DRAINING_TIMEOUT_SEC: {{ .Values.agent.configMap.drainingTimeoutSec | default "180" | quote }}
+  FAILOVER_ENABLED: {{ .Values.agent.configMap.failoverEnabled | quote }}
