@@ -2,58 +2,81 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- Replaces the name of the chart in the Chart.yaml file
 nameOverride: ""
+# -- Completely replaces the generated release name.
 fullnameOverride: ""
 
 agent:
+  # -- The number of agent pods to run
   replicaCount: 1
 
   image:
+    # -- Image repository to use for the agent
     repository: gcr.io/panope/agent
+    # -- Image pull policy for the agent
     pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
+    # -- Overrides the image tag whose default is the chart appVersion.
     tag:
 
+  # -- If defined, uses a Secret to pull an image from a private Docker registry or repository.
   imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: ""
 
   deployment:
-    # labels to add to the deployment
+    # -- Labels to add to the deployment of agent
     labels: {}
-    # Annotations to add to the deployment
+    # -- Annotations to add to the deployment of agent
     annotations: {}
 
   livenessProbe:
+    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
     failureThreshold: 5
     httpGet:
+      # -- Path to the health check endpoint
       path: /health
+      # -- Port of health check endpoint
       port: 4444
+      # -- Schema of request
       scheme: HTTP
+    # -- Number of seconds after the container has started before [probe] is initiated
     initialDelaySeconds: 5
+    # -- How often (in seconds) to perform the [probe]
     periodSeconds: 10
+    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
     successThreshold: 1
+    # -- Number of seconds after which the [probe] times out
     timeoutSeconds: 5
 
   readinessProbe:
+    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
     failureThreshold: 3
     httpGet:
+      # -- Path to the health check endpoint
       path: /health
+      # -- Port of health check endpoint
       port: 4444
+      # -- Schema of request
       scheme: HTTP
+    # -- Number of seconds after the container has started before [probe] is initiated
     initialDelaySeconds: 5
+    # -- How often (in seconds) to perform the [probe]
     periodSeconds: 10
+    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
     successThreshold: 1
+    # -- Number of seconds after which the [probe] times out
     timeoutSeconds: 5
-
+  # -- Annotations for the agent pods
   podAnnotations: {}
 
+  # -- Labels for the agent pods
   podLabels: {}
 
+  # -- Security context for the agent pods
   podSecurityContext:
     {}
     # fsGroup: 2000
 
+  # -- Security context for the agent containers
   securityContext:
     {}
     # capabilities:
@@ -63,8 +86,10 @@ agent:
     # runAsNonRoot: true
     # runAsUser: 1000
 
+  # -- Priority class name for the agent pods
   priorityClassName: ""
 
+  # -- Resources requests/limits for the agent containers
   resources:
     {}
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -78,20 +103,23 @@ agent:
     #   cpu: 100m
     #   memory: 128Mi
 
+  # -- Node labels for scheduling the agent pods
   nodeSelector: {}
 
+  # -- Tolerations for scheduling the agent pods
   tolerations: []
 
+  # -- Affinity for scheduling the agent pods
   affinity: {}
 
   secret:
-    # labels to add to the secret
+    # -- Labels to add to the secret
     labels: {}
-    # annotations to add to the secret
+    # -- Annotations to add to the secret
     annotations: {}
 
     nats:
-      # configure the NATS credentials for agent to publish/subscribe
+      # -- Configure the NATS credentials for agent to publish/subscribe to NATS server
       credentials:
       # credentials: |
       #   -----BEGIN NATS USER JWT-----
@@ -106,125 +134,128 @@ agent:
 
       #   *************************************************************
 
-    # if set to true the values are already base64 encoded when provided, otherwise the template performs the base64 encoding
+    # -- If set to true the values are already base64 encoded when provided, otherwise the template performs the base64 encoding
     valuesAreBase64Encoded: false
-    # sets a json keyfile for a gcp service account
+    # -- JSON key file for a GCP service account to authenticate agent to GCP
     googleServiceAccountKeyfileJson:
 
   configMap:
-    # labels to add to the config map
+    # -- Labels to add to the config map
     labels: {}
-    # annotations to add to the config map
+    # -- Annotations to add to the config map
     annotations: {}
 
-    # configure the NATS URI
-    # currently, the only supported URI schema is `wss`
+    # -- Configure the NATS URI to connect NATS server, currently, the only supported URI schema is `wss`
     natsUri: "wss://nats.panope.net:443"
 
-    # configure NATS subject for agent to publish
+    # -- Configure NATS subject for agent to publish to NATS server
     agentSubject: ""
 
-    # configure NATS subject for agent to subscribe
+    # -- Configure NATS subject for agent to subscribe to NATS server
     controllerSubject: ""
 
-    # configure the health check port
-    # if not set, default value is 4444
+    # -- Configure the health check port. if not set, default value is 4444
     healthCheckPort:
 
-    # configure the metrics port
-    # if not set, default value is 2112
+    # -- Configure the metrics port. if not set, default value is 2112
     metricsPort:
 
-    # configure the maximum number of nodes in the cluster as a percentage
+    # -- Configure the maximum number of nodes in the cluster as a percentage
     clusterNodeMaxSurge: "25%"
 
-    # configure the maximum number of nodes to be processed at the same time (cordoned or drained, etc.)
+    # -- Configure the maximum number of nodes to be processed at the same time (cordoned or drained, etc.)
     maxProcessedNodeCount: "5"
 
-    # configure the timeout for rolling update of deployment
-    # if not set, default value is 180
+    # -- Configure the timeout for rolling update of deployment. if not set, default value is 180
     rollingUpdateTimeoutSec:
 
-    # configure the timeout for draining pods
-    # if not set, default value is 180
+    # -- configure the timeout for draining pods from node. if not set, default value is 180
     drainingTimeoutSec:
 
-    # configure the failover feature
+    # -- enable the failover feature
     failoverEnabled: "false"
 
   serviceAccount:
+    # -- Service account name. if not set, panope.agent.fullname is used
     name: ""
-    # labels to add to the service account
+    # -- Labels to add to the service account
     labels: {}
-    # Annotations to add to the service account
+    # -- Annotations to add to the service account
     annotations: {}
 
   role:
-    # labels to add to the role
+    # -- Labels to add to the role
     labels: {}
-    # Annotations to add to the role
+    # -- Annotations to add to the role
     annotations: {}
 
   roleBinding:
-    # labels to add to the role binding
+    # -- Labels to add to the role binding
     labels: {}
-    # Annotations to add to the role binding
+    # -- Annotations to add to the role binding
     annotations: {}
 
   clusterRole:
-    # labels to add to the cluster role
+    # -- Labels to add to the cluster role
     labels: {}
-    # Annotations to add to the cluster role
+    # -- Annotations to add to the cluster role
     annotations: {}
 
   clusterRoleBinding:
-    # labels to add to the cluster role binding
+    # -- Labels to add to the cluster role binding
     labels: {}
-    # Annotations to add to the cluster role binding
+    # -- Annotations to add to the cluster role binding
     annotations: {}
 
   pdb:
-    # labels to add to the pdb
+    # -- Labels to add to the pdb
     labels: {}
-    # annotations to add to the pdb
+    # -- Annotations to add to the pdb
     annotations: {}
 
-    # configure PodDisruptionBudget for the agent pods
+    # -- Configure PodDisruptionBudget for the agent pods
     enabled: false
     # minAvailable: 1
     # maxUnavailable: 1
 
   serviceMonitor:
-    # labels to add to the servicemonitor
+    # -- Labels to add to the service monitor
     labels: {}
-    # annotations to add to the servicemonitor
+    # -- Annotations to add to the service monitor
     annotations: {}
-    # configure ServiceMonitor for Prometheus
+    # -- Configure the service monitor for Prometheus
     enabled: false
 
   service:
-    # labels to add to the service
+    # -- Labels to add to the service
     labels: {}
-    # Annotations to add to the service
+    # -- Annotations to add to the service
     annotations: {}
 
 observer:
   image:
+    # -- Image repository to use for the observer
     repository: gcr.io/panope/observer
+    # -- Image pull policy for the observer
     pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
+    # -- Overrides the image tag whose default is the chart appVersion
     tag:
 
+  # -- Annotations for the agent pods
   podAnnotations: {}
 
+  # -- Labels for the observer pods
   podLabels: {}
 
+  # -- Security context for the observer pods
   podSecurityContext: {}
 
+  # -- If defined, uses a Secret to pull an image from a private Docker registry or repository
   imagePullSecrets: []
 
+  # -- Affinity for scheduling the observer pods
   affinity:
-    # following affinity is required for the observer to work properly
+    # -- Following affinity is required for the observer to work properly
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
@@ -239,19 +270,19 @@ observer:
             operator: Exists
 
   daemonset:
-    # labels to add to the deployment
+    # -- Labels to add to the deployment
     labels: {}
-    # annotations to add to the deployment
+    # -- Annotations to add to the deployment
     annotations: {}
 
   secret:
-    # labels to add to the secret
+    # -- Labels to add to the secret
     labels: {}
-    # annotations to add to the secret
+    # -- Annotations to add to the secret
     annotations: {}
 
     nats:
-      # configure the NATS credentials for agent to publish/subscribe
+      # -- Configure the NATS credentials for the observer to publish/subscribe to NATS server
       credentials:
       # credentials: |
       #   -----BEGIN NATS USER JWT-----
@@ -268,72 +299,88 @@ observer:
 
 
   configMap:
-    # labels to add to the config map
+    # -- Labels to add to the config map
     labels: {}
-    # annotations to add to the config map
+    # -- Annotations to add to the config map
     annotations: {}
 
-    # configure NATS subject for observer to publish
+    # -- Configure NATS subject for the observer to publish to NATS server
     observerSubject: ""
 
-    # configure NATS subject for observer to subscribe
+    # -- Configure NATS subject for the observer to subscribe
     controllerSubject: ""
 
-    # configure the NATS URI
-    # currently, the only supported URI schema is `wss`
+    # -- Configure NATS uri to connect to NATS server. currently, the only supported URI schema is `wss`
     natsUri: "wss://nats.panope.net:443"
 
-    # configure the health check port
-    # if not set, default value is 4444
+    # -- Configure the health check port. if not set, default value is 4444
     healthCheckPort:
 
-    # configure the metrics port
-    # if not set, default value is 2112
+    # Configure the metrics port. if not set, default value is 2112
     metricsPort:
 
   livenessProbe:
+    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
     failureThreshold: 5
     httpGet:
+      # -- Path to the health check endpoint
       path: /health
+      # -- Port of health check endpoint
       port: 4444
+      # -- Schema of request
       scheme: HTTP
+    # -- Number of seconds after the container has started before [probe] is initiated
     initialDelaySeconds: 5
+    # -- How often (in seconds) to perform the [probe]
     periodSeconds: 10
+    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
     successThreshold: 1
+    # -- Number of seconds after which the [probe] times out
     timeoutSeconds: 5
 
   readinessProbe:
+    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
     failureThreshold: 3
     httpGet:
+      # -- Path to the health check endpoint
       path: /health
+      # -- Port of health check endpoint
       port: 4444
+      # -- Schema of request
       scheme: HTTP
+    # -- Number of seconds after the container has started before [probe] is initiated
     initialDelaySeconds: 5
+    # -- How often (in seconds) to perform the [probe]
     periodSeconds: 10
+    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
     successThreshold: 1
+    # -- Number of seconds after which the [probe] times out
     timeoutSeconds: 5
 
   serviceAccount:
+    # -- Service account name. if not set, (panope.observer.fullname) is used
     name: ""
-    # labels to add to the service account
+    # -- Labels to add to the service account
     labels: {}
-    # Annotations to add to the service account
+    # -- Annotations to add to the service account
     annotations: {}
 
   clusterRole:
-    # labels to add to the cluster role
+    # -- Labels to add to the cluster role
     labels: {}
-    # Annotations to add to the cluster role
+    # -- Annotations to add to the cluster role
     annotations: {}
 
   clusterRoleBinding:
-    # labels to add to the cluster role binding
+    # -- Labels to add to the cluster role binding
     labels: {}
-    # Annotations to add to the cluster role binding
+    # -- Annotations to add to the cluster role binding
     annotations: {}
 
+  # -- Priority class name for the observer pods
   priorityClassName: ""
 
+  # -- Resources requests/limits for the observer containers
   resources:
     {}
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -347,18 +394,19 @@ observer:
     #   cpu: 100m
     #   memory: 128Mi
 
+  # -- Tolerations for scheduling the observer pods
   tolerations: []
 
   serviceMonitor:
-    # labels to add to the servicemonitor
+    # -- Labels to add to the service monitor
     labels: {}
-    # annotations to add to the servicemonitor
+    # -- Annotations to add to the service monitor
     annotations: {}
-    # configure ServiceMonitor for Prometheus
+    # -- Configure the service monitor for Prometheus
     enabled: false
 
   service:
-    # labels to add to the service
+    # -- Labels to add to the service
     labels: {}
-    # Annotations to add to the service
+    # -- Annotations to add to the service
     annotations: {}
