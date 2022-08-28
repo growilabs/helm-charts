@@ -38,3 +38,13 @@ rules:
   - list
   - watch
   - update
+- apiGroups:
+  - apps
+  resources:
+  - replicasets
+  - daemonsets
+  - statefulsets
+  verbs:
+  - get
+  - list
+  - watch
