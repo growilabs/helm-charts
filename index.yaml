@@ -3,6 +3,17 @@ entries:
   panope:
   - apiVersion: v2
     appVersion: v0.8.0
+    created: "2022-08-28T11:27:06.714901232Z"
+    description: A Helm chart for Panope, use Spot VMs/Preemptible VMs in GKE to reduce
+      infrastructure costs while high availability tool
+    digest: 2c9f99763a6f3f1968fa93bc98a34714c94bd88b034a3c9eb675cbc8273dc436
+    name: panope
+    type: application
+    urls:
+    - https://github.com/7knot/helm-charts/releases/download/panope-0.8.1/panope-0.8.1.tgz
+    version: 0.8.1
+  - apiVersion: v2
+    appVersion: v0.8.0
     created: "2022-07-31T17:05:03.268632586Z"
     description: A Helm chart for Panope, use Spot VMs/Preemptible VMs in GKE to reduce
       infrastructure costs while high availability tool
@@ -353,4 +364,4 @@ entries:
     urls:
     - https://github.com/7knot/helm-charts/releases/download/panope-0.1.0/panope-0.1.0.tgz
     version: 0.1.0
-generated: "2022-07-31T17:05:03.26904099Z"
+generated: "2022-08-28T11:27:06.715234927Z"
