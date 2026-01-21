@@ -13,7 +13,7 @@ agent:
 
   image:
     # -- Image repository to use for the agent
-    repository: gcr.io/panope/agent
+    repository: asia-docker.pkg.dev/panope/standard/agent
     # -- Image pull policy for the agent
     pullPolicy: IfNotPresent
     # -- Overrides the image tag whose default is the chart appVersion.
