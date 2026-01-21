@@ -235,7 +235,7 @@ agent:
 observer:
   image:
     # -- Image repository to use for the observer
-    repository: gcr.io/panope/observer
+    repository: asia-docker.pkg.dev/panope/standard/observer
     # -- Image pull policy for the observer
     pullPolicy: IfNotPresent
     # -- Overrides the image tag whose default is the chart appVersion

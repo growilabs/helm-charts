@@ -41,7 +41,7 @@ $ helm install my-release 7knot/panope
 | agent.deployment.annotations | object | `{}` | Annotations to add to the deployment of agent |
 | agent.deployment.labels | object | `{}` | Labels to add to the deployment of agent |
 | agent.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the agent |
-| agent.image.repository | string | `"gcr.io/panope/agent"` | Image repository to use for the agent |
+| agent.image.repository | string | `"asia-docker.pkg.dev/panope/standard/agent"` | Image repository to use for the agent |
 | agent.image.tag | string | `nil` | Overrides the image tag whose default is the chart appVersion. |
 | agent.imagePullSecrets | list | `[]` | If defined, uses a Secret to pull an image from a private Docker registry or repository. |
 | agent.livenessProbe.failureThreshold | int | `5` | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
@@ -107,7 +107,7 @@ $ helm install my-release 7knot/panope
 | observer.daemonset.annotations | object | `{}` | Annotations to add to the deployment |
 | observer.daemonset.labels | object | `{}` | Labels to add to the deployment |
 | observer.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the observer |
-| observer.image.repository | string | `"gcr.io/panope/observer"` | Image repository to use for the observer |
+| observer.image.repository | string | `"asia-docker.pkg.dev/panope/standard/observer"` | Image repository to use for the observer |
 | observer.image.tag | string | `nil` | Overrides the image tag whose default is the chart appVersion |
 | observer.imagePullSecrets | list | `[]` | If defined, uses a Secret to pull an image from a private Docker registry or repository |
 | observer.livenessProbe.failureThreshold | int | `5` | Minimum consecutive failures for the [probe] to be considered failed after having succeeded |
